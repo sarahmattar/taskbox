@@ -6,6 +6,13 @@ import { MockedState } from './TaskList.stories';
 
 import { Provider } from 'react-redux';
 
+import {
+	fireEvent,
+	within,
+	waitFor,
+	waitForElementToBeRemoved,
+} from '@storybook/testing-library';
+
 export default {
 	component: InboxScreen,
 	title: 'InboxScreen',
@@ -28,6 +35,17 @@ Default.parameters = {
 			),
 		],
 	},
+};
+
+Default.play = async ({ canvasElement }) => {
+	const canvas = within(canvasElement);
+	await waitForElementToBeRemoved(await canvas.findByTestId('loading'));
+	await waitFor(async () => {
+		// simulate pinning the first task via aria-label attribute?
+		await fireEvent.click(canvas.getByLabelText('pinTask-1'));
+		//simulate pinning the third task
+		await fireEvent.click(canvas.getByLabelText('pinTask-3'));
+	});
 };
 
 export const Error = Template.bind({});

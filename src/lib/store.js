@@ -11,7 +11,6 @@ const TaskBoxData = {
 };
 
 // create async thunk to get tasks from remote endpoint
-
 export const fetchTasks = createAsyncThunk('todos/fetchTodos', async () => {
 	const response = await fetch(
 		'https://jsonplaceholder.typicode.com/todos?userId=1'
