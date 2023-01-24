@@ -33,3 +33,15 @@ Archived.args = {
 		state: 'TASK_ARCHIVED',
 	},
 };
+
+export const LongwindedTask = Template.bind({});
+
+const longTitle =
+	'Here is a very very very very very very very long task that will take a long long long long long time to do what is a comma?';
+
+LongwindedTask.args = {
+	task: {
+		...Default.args.task,
+		title: longTitle,
+	},
+};
